@@ -1,0 +1,21 @@
+import java.lang.Integer;
+
+CREATE TABLE cities(
+  _id INTEGER AS Integer NOT NULL PRIMARY KEY,
+  name TEXT NOT NULL,
+  code TEXT NOT NULL UNIQUE,
+  province_id INTEGER AS Integer  NOT NULL,
+  FOREIGN KEY(province_id) REFERENCES provinces(_id)
+);
+
+select_all:
+SELECT * FROM cities;
+
+select_by_id:
+SELECT name FROM cities WHERE _id = ?;
+
+select_by_province_id:
+SELECT * FROM cities WHERE province_id = ?;
+
+insert_row:
+INSERT INTO cities VALUES (?, ?, ?, ?);
