@@ -13,8 +13,8 @@ public abstract class County implements CountyModel {
 
     public static final RowMapper<County> SELECT_ALL_MAPPER = FACTORY.select_allMapper();
 
-    public static final RowMapper<String> SELECT_BY_ID_MAPPER = FACTORY.select_by_idMapper();
+    public static final RowMapper<County> SELECT_BY_ID_MAPPER = FACTORY.select_by_idMapper();
 
-    public static final RowMapper<String> SELECT_BY_CITY_ID_MAPPER
+    public static final RowMapper<County> SELECT_BY_CITY_ID_MAPPER
         = FACTORY.select_by_city_idMapper();
 }

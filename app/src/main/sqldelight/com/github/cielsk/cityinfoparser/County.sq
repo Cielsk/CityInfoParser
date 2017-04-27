@@ -1,6 +1,7 @@
 CREATE TABLE counties(
   _id INTEGER AS Integer NOT NULL PRIMARY KEY,
-  name TEXT NOT NULL,
+  name_en TEXT NOT NULL,
+  name_zh TEXT NOT NULL,
   code TEXT NOT NULL UNIQUE,
   city_id INTEGER AS Integer NOT NULL,
   FOREIGN KEY(city_id) REFERENCES cities(_id)
@@ -10,10 +11,10 @@ select_all:
 SELECT * FROM counties;
 
 select_by_id:
-SELECT name FROM counties WHERE _id = ?;
+SELECT * FROM counties WHERE _id = ?;
 
 select_by_city_id:
-SELECT name FROM counties WHERE city_id = ?;
+SELECT * FROM counties WHERE city_id = ?;
 
 insert_row:
-INSERT INTO counties VALUES (?, ?, ?, ?);
+INSERT INTO counties VALUES (?, ?, ?, ?, ?);

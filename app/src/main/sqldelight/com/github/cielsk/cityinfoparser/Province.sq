@@ -1,16 +1,14 @@
 CREATE TABLE provinces(
-  -- id 为天气代码的第6、7位字符组合成的数字
   _id INTEGER AS Integer NOT NULL PRIMARY KEY,
-
-  -- 仅仅保存中文名
-  name TEXT NOT NULL UNIQUE
+  name_en TEXT NOT NULL,
+  name_zh TEXT NOT NULL UNIQUE
 );
 
 select_all:
 SELECT * FROM provinces;
 
 select_by_id:
-SELECT name FROM provinces WHERE _id = ?;
+SELECT * FROM provinces WHERE _id = ?;
 
 insert_row:
-INSERT INTO provinces VALUES (?, ?);
+INSERT INTO provinces VALUES (?, ?, ?);

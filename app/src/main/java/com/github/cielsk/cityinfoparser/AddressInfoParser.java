@@ -32,20 +32,23 @@ public class AddressInfoParser {
         int countyId = Integer.parseInt(weatherCode.substring(5));
 
         if (mProvinceIdCached != provinceId) {
-            String provinceName = info.getProvinceZh();
+            String provinceNameEn = info.getProvinceEn();
+            String provinceNameZh = info.getProvinceZh();
             mProvinceIdCached = provinceId;
-            insertProvince(provinceId, provinceName);
+            insertProvince(provinceId, provinceNameEn, provinceNameZh);
         }
 
         if (mCityIdCached != cityId && isValidCity(info)) {
-            String cityName = info.getCityZh();
+            String cityNameEn = info.getCityEn();
+            String cityNameZh = info.getCityZh();
             mCityIdCached = cityId;
-            insertCity(cityId, cityName, weatherCode, provinceId);
+            insertCity(cityId, cityNameEn, cityNameZh, weatherCode, provinceId);
         }
 
         if (isValidCounty(info)) {
-            String countyName = info.getCityZh();
-            insertCounty(countyId, countyName, weatherCode, cityId);
+            String countyNameEn = info.getCityEn();
+            String countyNameZh = info.getCityZh();
+            insertCounty(countyId, countyNameEn, countyNameZh, weatherCode, cityId);
         }
     }
 
@@ -61,22 +64,22 @@ public class AddressInfoParser {
                    .equals(info.getProvinceZh());
     }
 
-    private void insertProvince(int id, @NonNull String name) {
+    private void insertProvince(int id, @NonNull String nameEn, @NonNull String nameZh) {
         Province.Insert_row insertRow
             = new ProvinceModel.Insert_row(mDatabase.getReadableDatabase());
-        insertRow.bind(id, name);
+        insertRow.bind(id, nameEn, nameZh);
         mDatabase.executeInsert(insertRow.table, insertRow.program);
     }
 
-    private void insertCity(int id, @NonNull String name, @NonNull String code, int province_id) {
+    private void insertCity(int id, @NonNull String nameEn, @NonNull String nameZh, @NonNull String code, int province_id) {
         City.Insert_row insertRow = new CityModel.Insert_row(mDatabase.getReadableDatabase());
-        insertRow.bind(id, name, code, province_id);
+        insertRow.bind(id, nameEn, nameZh, code, province_id);
         mDatabase.executeInsert(insertRow.table, insertRow.program);
     }
 
-    private void insertCounty(int id, @NonNull String name, @NonNull String code, int city_id) {
+    private void insertCounty(int id, @NonNull String nameEn, @NonNull String nameZh, @NonNull String code, int city_id) {
         County.Insert_row insertRow = new CountyModel.Insert_row(mDatabase.getReadableDatabase());
-        insertRow.bind(id, name, code, city_id);
+        insertRow.bind(id, nameEn, nameZh, code, city_id);
         mDatabase.executeInsert(insertRow.table, insertRow.program);
     }
 }

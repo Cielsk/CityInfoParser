@@ -13,5 +13,5 @@ public abstract class Province implements ProvinceModel {
 
     public static final RowMapper<Province> SELECT_ALL_MAPPER = FACTORY.select_allMapper();
 
-    public static final RowMapper<String> SELECT_BY_ID_MAPPER = FACTORY.select_by_idMapper();
+    public static final RowMapper<Province> SELECT_BY_ID_MAPPER = FACTORY.select_by_idMapper();
 }
